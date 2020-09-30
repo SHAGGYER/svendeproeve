@@ -1,5 +1,6 @@
 import React from 'react';
 import Page from '../Page/Page';
+import { Link } from 'react-router-dom';
 
 export default function () {
   return (
@@ -41,6 +42,11 @@ export default function () {
         </div>
         <div className="mt-4 text-center">
           &copy; 2020 - Foreningen for Dyrevelfærd
+        </div>
+        <div className="text-center">
+          <Link to={'/unsubscribe'} className="underline">
+            Afmeld Nyhedsbrev
+          </Link>
         </div>
       </Page>
     </article>

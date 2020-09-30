@@ -4,7 +4,6 @@ import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import AppContext from './Contexts/AppContext';
-import Install from './Pages/Install/Install';
 import Login from './Pages/Login/Login';
 import Navbar from './Components/Navbar/Navbar';
 import Sidebar from './Components/Sidebar/Sidebar';
@@ -20,6 +19,15 @@ import Admin from './Pages/Admin/Admin';
 import CreateVolunteer from './Pages/Admin/Volunteers/CreateVolunteer';
 import EditVolunteer from './Pages/Admin/Volunteers/EditVolunteer';
 import BrowseVolunteers from './Pages/Admin/Volunteers/BrowseVolunteers';
+import CreateAnimal from './Pages/Admin/Animals/CreateAnimal';
+import EditAnimal from './Pages/Admin/Animals/EditAnimal';
+import BrowseAnimals from './Pages/Admin/Animals/BrowseAnimals';
+import EditAdopt from './Pages/Admin/Adopts/EditAdopt';
+import BrowseAdopts from './Pages/Admin/Adopts/BrowseAdopts';
+import CreateAsset from './Pages/Admin/Assets/CreateAsset';
+import BrowseAssets from './Pages/Admin/Assets/BrowseAssets';
+import BrowseSubscribers from './Pages/Admin/Subscribers/BrowseSubscribers';
+import Unsubscribe from './Pages/Unsubscribe/Unsubscribe';
 
 function App({ location }) {
   const [token, setToken] = useState(null);
@@ -109,12 +117,29 @@ function App({ location }) {
                 <PetDetails />
               </Route>
 
+              <Route path="/unsubscribe">
+                <Unsubscribe />
+              </Route>
+
               <Route path="/admin" exact>
                 {userId ? <Admin /> : <Redirect to="/auth/login" />}
               </Route>
 
-              <Route path="/admin/adopt/create">
+              <Route path="/admin/adopts/create">
                 {userId ? <CreateAdopt /> : <Redirect to="/auth/login" />}
+              </Route>
+              <Route path="/admin/adopts/:id">
+                {userId ? <EditAdopt /> : <Redirect to="/auth/login" />}
+              </Route>
+              <Route path="/admin/adopts" exact>
+                {userId ? <BrowseAdopts /> : <Redirect to="/auth/login" />}
+              </Route>
+
+              <Route path="/admin/assets/create">
+                {userId ? <CreateAsset /> : <Redirect to="/auth/login" />}
+              </Route>
+              <Route path="/admin/assets" exact>
+                {userId ? <BrowseAssets /> : <Redirect to="/auth/login" />}
               </Route>
 
               <Route path="/admin/abouts/create">
@@ -127,6 +152,16 @@ function App({ location }) {
                 {userId ? <BrowseAbouts /> : <Redirect to="/auth/login" />}
               </Route>
 
+              <Route path="/admin/animals/create">
+                {userId ? <CreateAnimal /> : <Redirect to="/auth/login" />}
+              </Route>
+              <Route path="/admin/animals/:id">
+                {userId ? <EditAnimal /> : <Redirect to="/auth/login" />}
+              </Route>
+              <Route path="/admin/animals" exact>
+                {userId ? <BrowseAnimals /> : <Redirect to="/auth/login" />}
+              </Route>
+
               <Route path="/admin/volunteers/create">
                 {userId ? <CreateVolunteer /> : <Redirect to="/auth/login" />}
               </Route>
@@ -135,6 +170,10 @@ function App({ location }) {
               </Route>
               <Route path="/admin/volunteers" exact>
                 {userId ? <BrowseVolunteers /> : <Redirect to="/auth/login" />}
+              </Route>
+
+              <Route path="/admin/subscribers" exact>
+                {userId ? <BrowseSubscribers /> : <Redirect to="/auth/login" />}
               </Route>
 
               <Route path="/auth/login">

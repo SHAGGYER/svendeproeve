@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import AdminPage from '../../../Components/AdminPage/AdminPage';
 import HttpClient from '../../../Services/HttpClient';
 import Button from '../../../Components/Button/Button';
 import { useHistory } from 'react-router-dom';
+import AppContext from '../../../Contexts/AppContext';
 
 export default function () {
+  const { logout } = useContext(AppContext);
   const history = useHistory();
   const [assets, setAssets] = useState([]);
   const [title, setTitle] = useState('');
@@ -43,13 +45,20 @@ export default function () {
       extra,
     };
 
-    await HttpClient().post('http://localhost:4000/api/v1/volunteers', data);
-    history.push('/admin/adopt');
+    try {
+      await HttpClient().post('http://localhost:4000/api/v1/volunteers', data);
+      history.push('/admin/volunteers');
+    } catch (e) {
+      const { status } = e.response;
+      if (status === 403 || status === 500) {
+        logout();
+      }
+    }
   };
 
   return (
     <AdminPage>
-      <h1 className="text-3xl mb-4">Opret Adopt Sektion</h1>
+      <h1 className="text-3xl mb-4">Opret Frivillig</h1>
 
       <form onSubmit={onSubmit}>
         <div className="mb-4">

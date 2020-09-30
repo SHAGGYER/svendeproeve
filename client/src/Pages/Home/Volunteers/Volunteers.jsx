@@ -23,14 +23,11 @@ export default function () {
       <Page>
         <h2 className="text-3xl mb-4 text-blue-700">Bliv Frivillig</h2>
 
-        <div
-          className="flex flex-wrap justify-between items-start"
-          style={{ height: 550 }}
-        >
+        <div className="flex flex-wrap justify-between items-start">
           {infos.map((info, index) => (
             <div
               key={index}
-              className="mr-4 flex flex-col w-64"
+              className="md:mr-4 mb-2 w-full flex flex-col md:w-64"
               style={{ height: 500 }}
             >
               <div className="bg-gray-100 px-2 py-1 border border-gray-300 text-black">

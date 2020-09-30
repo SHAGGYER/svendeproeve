@@ -13,7 +13,6 @@ export default function () {
   const [content, setContent] = useState('');
   const [errors, setErrors] = useState([]);
   const [activeAsset, setActiveAsset] = useState(null);
-  const [extra, setExtra] = useState('');
   const [assets, setAssets] = useState([]);
 
   useEffect(() => {
@@ -33,12 +32,11 @@ export default function () {
 
   const getResource = async () => {
     const { data } = await HttpClient().get(
-      'http://localhost:4000/api/v1/volunteers/' + id,
+      'http://localhost:4000/api/v1/adoptsections/' + id,
     );
     setTitle(data.title);
     setContent(data.content);
     setActiveAsset(data.asset.id);
-    setExtra(data.extra);
   };
 
   const onSubmit = async (event) => {
@@ -57,7 +55,6 @@ export default function () {
         title,
         content,
         assetId: activeAsset,
-        extra,
       };
 
       await HttpClient().put(
@@ -76,9 +73,9 @@ export default function () {
   const deleteResource = async () => {
     try {
       await HttpClient().delete(
-        'http://localhost:4000/api/v1/volunteers/' + id,
+        'http://localhost:4000/api/v1/adoptsections/' + id,
       );
-      history.push('/admin/volunteers');
+      history.push('/admin/adopts');
     } catch (e) {
       const { status } = e.response;
       if (status === 403 || status === 500) {
@@ -89,13 +86,13 @@ export default function () {
 
   return (
     <AdminPage>
-      <h1 className="text-3xl mb-4">Redigér Frivillig</h1>
+      <h1 className="text-3xl mb-4">Redigér Adopt Sektion</h1>
 
       <Button
         className="bg-red-600 text-white mb-4"
         onClick={() => deleteResource()}
       >
-        Slet Frivillig
+        Slet Adopt Sektion
       </Button>
 
       <form onSubmit={onSubmit}>
@@ -113,14 +110,6 @@ export default function () {
             onChange={(e) => setContent(e.target.value)}
             placeholder="Content"
             className="w-full p-2 border border-gray-300 h-64 resize-none"
-          />
-        </div>
-        <div className="mb-4">
-          <input
-            value={extra}
-            onChange={(e) => setExtra(e.target.value)}
-            placeholder="Ekstra"
-            className="w-full p-2 border border-gray-300"
           />
         </div>
 

@@ -8,6 +8,7 @@ import BannerAdopt from './BannerAdopt/BannerAdopt';
 import Subscribe from './Subscribe/Subscribe';
 import Animals from './Animals/Animals';
 import Footer from '../../Components/Footer/Footer';
+import Slider from './Slider/Slider';
 
 export default function () {
   return (
@@ -16,6 +17,7 @@ export default function () {
       <About />
       <Volunteers />
       <BannerSave />
+      <Slider />
       <Subscribe />
       <BannerAdopt />
       <Animals />

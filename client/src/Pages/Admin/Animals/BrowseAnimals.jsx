@@ -12,7 +12,7 @@ export default function () {
 
   const getResources = async () => {
     const { data } = await HttpClient().get(
-      'http://localhost:4000/api/v1/volunteers',
+      'http://localhost:4000/api/v1/animals',
     );
     setResources(data);
   };
@@ -22,9 +22,9 @@ export default function () {
       <div className="flex flex-wrap">
         {resources.map((resource, index) => (
           <div className="p-4 text-center border border-gray-300 m-1 w-40">
-            <h3 className="mb-4">{resource.title}</h3>
+            <h3 className="mb-4">{resource.name}</h3>
             <Link
-              to={`/admin/volunteers/${resource.id}`}
+              to={`/admin/animals/${resource.id}`}
               className="bg-blue-700 text-white p-2 rounded"
             >
               Se

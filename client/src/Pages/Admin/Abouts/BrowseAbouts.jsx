@@ -21,7 +21,7 @@ export default function () {
     <AdminPage>
       <div className="flex flex-wrap">
         {resources.map((resource, index) => (
-          <div className="p-4 text-center border border-gray-300 m-1">
+          <div className="p-4 text-center border border-gray-300 m-1 w-40">
             <h3 className="mb-4">{resource.title}</h3>
             <Link
               to={`/admin/abouts/${resource.id}`}

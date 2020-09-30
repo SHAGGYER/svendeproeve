@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import AdminPage from '../../../Components/AdminPage/AdminPage';
 import HttpClient from '../../../Services/HttpClient';
 import Button from '../../../Components/Button/Button';
 import { useHistory } from 'react-router-dom';
+import AppContext from '../../../Contexts/AppContext';
 
 export default function () {
+  const { logout } = useContext(AppContext);
   const history = useHistory();
   const [assets, setAssets] = useState([]);
   const [title, setTitle] = useState('');
@@ -41,8 +43,18 @@ export default function () {
       assetId: activeAsset,
     };
 
-    await HttpClient().post('http://localhost:4000/api/v1/adoptsections', data);
-    history.push('/admin/adopt');
+    try {
+      await HttpClient().post(
+        'http://localhost:4000/api/v1/adoptsections',
+        data,
+      );
+      history.push('/admin/adopts');
+    } catch (e) {
+      const { status } = e.response;
+      if (status === 403 || status === 500) {
+        logout();
+      }
+    }
   };
 
   return (

@@ -23,7 +23,7 @@ export default function () {
       <div className="p-4" id="about">
         <div className="flex flex-wrap justify-between items-start">
           {abouts.map((about, index) => (
-            <div key={index} className="mr-4 w-64">
+            <div key={index} className="mr-4 w-full md:w-64">
               <h3 className="text-3xl text-blue-700 mb-2">{about.title}</h3>
               <p className="text-sm text-gray-600">{about.content}</p>
             </div>

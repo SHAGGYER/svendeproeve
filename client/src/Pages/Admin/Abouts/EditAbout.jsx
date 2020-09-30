@@ -44,7 +44,20 @@ export default function () {
       await HttpClient().put('http://localhost:4000/api/v1/abouts/' + id, data);
       history.push('/admin/abouts');
     } catch (e) {
-      if (e.response.status === 403) {
+      const { status } = e.response;
+      if (status === 403 || status === 500) {
+        logout();
+      }
+    }
+  };
+
+  const deleteResource = async () => {
+    try {
+      await HttpClient().delete('http://localhost:4000/api/v1/abouts/' + id);
+      history.push('/admin/abouts');
+    } catch (e) {
+      const { status } = e.response;
+      if (status === 403 || status === 500) {
         logout();
       }
     }
@@ -52,7 +65,14 @@ export default function () {
 
   return (
     <AdminPage>
-      <h1 className="text-3xl mb-4">Opret Om</h1>
+      <h1 className="text-3xl mb-4">Redigér Om</h1>
+
+      <Button
+        className="bg-red-600 text-white mb-4"
+        onClick={() => deleteResource()}
+      >
+        Slet Om
+      </Button>
 
       <form onSubmit={onSubmit}>
         <div className="mb-4">

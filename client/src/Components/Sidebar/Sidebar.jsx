@@ -10,11 +10,11 @@ export default function () {
   const adoptItems = [
     {
       title: 'Alle Adoption',
-      to: '/admin/adopt',
+      to: '/admin/adopts',
     },
     {
       title: 'Opret Adoption',
-      to: '/admin/adopt/create',
+      to: '/admin/adopts/create',
     },
   ];
 
@@ -62,6 +62,13 @@ export default function () {
     },
   ];
 
+  const subscriberItems = [
+    {
+      title: 'Alle Subscribere',
+      to: '/admin/subscribers',
+    },
+  ];
+
   return (
     <div className="fixed left-0 top-0 w-64 h-full bg-gray-600 flex flex-col">
       <div className="flex justify-center p-4">
@@ -96,6 +103,11 @@ export default function () {
         <SidebarSubmenu
           items={assetsItems}
           title="Assets"
+          icon={<i className="fas fa-th"></i>}
+        />
+        <SidebarSubmenu
+          items={subscriberItems}
+          title="Subscribere"
           icon={<i className="fas fa-th"></i>}
         />
       </article>
