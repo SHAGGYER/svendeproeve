@@ -1,5 +1,4 @@
 import React from 'react';
-import HttpClient from './Services/HttpClient';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
