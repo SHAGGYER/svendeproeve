@@ -12,7 +12,9 @@
 - react-router-dom
 - react-notifications-component
 - react-image-slideshow
+- validator
 - tailwindcss
+- axios
 
 ## Guide
 
@@ -43,6 +45,10 @@ genopfinde hjul på ny, hvis man kan undgå det.
 Jeg har desuden brugt et bibliotek til notifikationer, som både er lækkert
 og nemt at bruge. Det har jeg gjort fordi det er en meget god løsning
 at vise en notifikation, som ikke forstyrrer layoutet.
+
+Jeg har brugt et bibliotek der hedder validator til validering af email.
+
+Sidst men ikke mindst har jeg brugt axios til http requests.
 
 ## Kodeeksempler
 
